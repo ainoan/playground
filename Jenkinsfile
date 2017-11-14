@@ -17,10 +17,20 @@ pipeline {
         sh 'mvn -Dmaven.test.failure.ignore clean package'
       }
     }
-    stage('Result') {
-      steps {
-        junit '**/target/surefire-reports/TEST-*.xml'
-        archiveArtifacts 'target/*.jar'
+    stage('test') {
+      parallel {
+        stage('Result') {
+          steps {
+            junit '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts 'target/*.jar'
+          }
+        }
+        stage('') {
+          agent any
+          steps {
+            sh 'mvn clean compile'
+          }
+        }
       }
     }
   }
