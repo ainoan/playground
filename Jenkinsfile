@@ -5,6 +5,12 @@ pipeline {
     }
     
   }
+  stage('compile') {
+          agent any
+          steps {
+            sh 'echo \'Perform compilation\''
+          }
+        }
   stages {
     stage('Preparation') {
       steps {
@@ -25,12 +31,7 @@ pipeline {
             archiveArtifacts 'target/*.jar'
           }
         }
-        stage('compile') {
-          agent any
-          steps {
-            sh 'echo \'Perform compilation\''
-          }
-        }
+        
       }
     }
   }
