@@ -5,12 +5,7 @@ pipeline {
     }
     
   }
-  stage('compile') {
-          agent any
-          steps {
-            sh 'echo \'Perform compilation\''
-          }
-        }
+
   stages {
     stage('Preparation') {
       steps {
@@ -18,6 +13,12 @@ pipeline {
         sh 'echo "hello"'
       }
     }
+  stage('compile') {
+          agent any
+          steps {
+            sh 'echo \'Perform compilation\''
+          }
+        }
     stage('Build') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore clean package'
