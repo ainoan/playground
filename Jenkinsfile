@@ -25,7 +25,7 @@ pipeline {
             archiveArtifacts 'target/*.jar'
           }
         }
-        stage('error') {
+        stage('compile') {
           agent any
           steps {
             sh 'echo \'Perform compilation\''
