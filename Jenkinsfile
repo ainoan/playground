@@ -25,10 +25,10 @@ pipeline {
             archiveArtifacts 'target/*.jar'
           }
         }
-        stage('') {
+        stage('error') {
           agent any
           steps {
-            sh 'mvn clean compile'
+            sh 'echo \'Perform compilation\''
           }
         }
       }
